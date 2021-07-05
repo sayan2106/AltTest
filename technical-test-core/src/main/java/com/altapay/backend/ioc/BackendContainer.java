@@ -12,18 +12,18 @@ public class BackendContainer implements IModelFactory {
 
 	public BackendController getBackendController() 
 	{
-		return new BackendController(getShopOrderRepository());
+		return new BackendController(getShopOrderRepository(this));
 				
 	}
 
 	
 	private static ShopOrderRepository shopOrderRepository=null;
 	
-	private ShopOrderRepository getShopOrderRepository() 
+	private static ShopOrderRepository getShopOrderRepository(BackendContainer backendContainer) 
 	{
 		if(shopOrderRepository==null)
 		{
-		return new ShopOrderRepository(this);
+		return new ShopOrderRepository(backendContainer);
 		}
 		return shopOrderRepository;
 	}
